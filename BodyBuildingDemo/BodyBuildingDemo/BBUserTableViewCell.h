@@ -10,5 +10,5 @@
 @class BBUser;
 @interface BBUserTableViewCell : UITableViewCell
 @property (nonatomic, strong) BBUser *user;
-+ (CGFloat)cellHeightInTableView:(UITableView*)tableView;
++ (CGFloat)cellHeightInTableView:(UITableView *)tableView forUser:(BBUser*)user;
 @end

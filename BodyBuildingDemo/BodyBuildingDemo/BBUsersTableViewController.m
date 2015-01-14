@@ -12,7 +12,7 @@
 #import "BBUserTableViewCell.h"
 #import "BBReloadTableViewCell.h"
 
-#import "BBUser.h"
+#import "BBUser+Accessors.h"
 
 static NSString *kUserCellIdentifier = @"kUserCellIdentifier";
 static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
@@ -27,8 +27,30 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    NSDictionary *testApiUser = @{
+                                  @"realName" : @"alex",
+                                  @"userName" : @"farts Machine",
+                                  @"city"  :@"Phoenix",
+                                  @"state" : @"AZ",
+                                  @"country" : @"USA",
+                                  @"userId" : @(3),
+                                  @"birthday" :@"1985-07-11"
+                                    };
     
+    BBUser *testUser = [BBUser createOrUpdatedWithDictionary:testApiUser inContext:self.managedObjectContext];
+    NSError *saveError = nil;
+    NSError *fetchError = nil;
+
+    [self.managedObjectContext save:&saveError];
+    if(saveError != nil){
+        NSLog(@"save error:%@", saveError);
+    }
     
+    [self.fetchedResultsController performFetch:&fetchError];
+    if(fetchError != nil){
+        NSLog(@"fetch error:%@", fetchError);
+    }
     self.title = NSLocalizedString(@"Users", @"users table title");
     
     [self.tableView registerNib:[UINib nibWithNibName:@"BBUserTableViewCell" bundle:nil] forCellReuseIdentifier:kUserCellIdentifier];
@@ -64,7 +86,7 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
         [fetchRequest setEntity:entity];
         
         NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                                  initWithKey:@"name" ascending:YES];
+                                  initWithKey:@"userName" ascending:YES];
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
         
         [fetchRequest setFetchBatchSize:20];
@@ -73,6 +95,7 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
         [[BBUserFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                             managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
                                                        cacheName:nil];
+        theFetchedResultsController.tableView = self.tableView;
         _fetchedResultsController = theFetchedResultsController;
     }
     return _fetchedResultsController;
@@ -92,9 +115,9 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUserCellIdentifier forIndexPath:indexPath];
+    BBUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUserCellIdentifier forIndexPath:indexPath];
     BBUser *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.detailTextLabel.text = user.name;
+    cell.user = user;
     // Configure the cell...
     
     return cell;
@@ -138,7 +161,9 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [BBUserTableViewCell cellHeightInTableView:tableView];
+    BBUser *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    return [BBUserTableViewCell cellHeightInTableView:tableView forUser:user];
 }
 /*
 #pragma mark - Navigation

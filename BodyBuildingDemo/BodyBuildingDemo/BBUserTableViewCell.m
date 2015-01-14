@@ -7,6 +7,17 @@
 //
 
 #import "BBUserTableViewCell.h"
+#import "BBUser+Accessors.h"
+
+@interface BBUserTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *stateCountryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *noteButton;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+
+@end
 
 @implementation BBUserTableViewCell
 
@@ -20,8 +31,46 @@
     // Configure the view for the selected state
 }
 
-+ (CGFloat)cellHeightInTableView:(UITableView *)tableView
+- (void)setUser:(BBUser *)user
 {
-    return 100;
+    _user = user;
+    self.userNameLabel.text = user.userName;
+    self.ageLabel.text = [NSString stringWithFormat:@"%li", (long)[user age]];
+    self.cityLabel.text = user.city;
+    self.stateCountryLabel.text = [NSString stringWithFormat:@"%@,%@", user.state, user.country];
+}
+- (IBAction)notePressed:(id)sender {
+}
+
++ (CGFloat)cellHeightInTableView:(UITableView *)tableView forUser:(BBUser*)user
+{
+    CGFloat imageHeight = 70;
+    CGFloat imageWidth = 70;
+    CGFloat imageLeftPadding = 10;
+    CGFloat imageRightPadding = 4;
+    CGFloat widthForText = tableView.bounds.size.width - imageWidth - imageLeftPadding - imageRightPadding;
+    CGFloat cityHeight = [self heightForString:user.city constrainedToWidth:widthForText];
+    CGFloat stateHeight = [self heightForString:user.state constrainedToWidth:widthForText];
+    CGFloat buttonHeight = [self heightForString:@"notes" constrainedToWidth:widthForText];
+    return MAX(imageHeight + 20, 20 + cityHeight + stateHeight + buttonHeight);
+}
+
+
++ (CGFloat)heightForString:(NSString*)title constrainedToWidth:(CGFloat)width {
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    NSString *text = title ?: @"test";
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: font}];
+    
+    UILabel *label = [[UILabel alloc] init];
+    
+    label.attributedText = attributedText;
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize size = [label sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
+    
+    font = nil;
+    attributedText = nil;
+    
+    return size.height;
 }
 @end

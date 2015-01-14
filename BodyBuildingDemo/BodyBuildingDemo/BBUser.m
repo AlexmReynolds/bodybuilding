@@ -11,6 +11,16 @@
 
 @implementation BBUser
 
-@dynamic name;
+@dynamic userName;
+@dynamic realName;
+@dynamic state;
+@dynamic city;
+@dynamic country;
+@dynamic userId;
+@dynamic birthday;
+@dynamic height;
+@dynamic profilePicUrl;
+@dynamic createdAt;
+@dynamic updatedAt;
 
 @end
