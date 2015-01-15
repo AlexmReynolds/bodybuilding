@@ -147,17 +147,8 @@
 			children = (
 				E71233071A66E07A0034E447 /* AppDelegate.h */,
 				E71233081A66E07A0034E447 /* AppDelegate.m */,
-				E712332F1A66E0FF0034E447 /* BBUsersTableViewController.h */,
-				E71233301A66E0FF0034E447 /* BBUsersTableViewController.m */,
-				E71233891A678BD30034E447 /* BBUserDetailsController.h */,
-				E712338A1A678BD30034E447 /* BBUserDetailsController.m */,
-				E712338C1A678BF20034E447 /* BBUserDetailsController.xib */,
-				E712339A1A685B9C0034E447 /* BBNotesPreviewViewController.h */,
-				E712339B1A685B9C0034E447 /* BBNotesPreviewViewController.m */,
-				E712339C1A685B9C0034E447 /* BBNotesPreviewViewController.xib */,
-				E71233981A685B310034E447 /* BBNotesPreview.xib */,
+				E712339F1A6870BA0034E447 /* Views */,
 				E71233971A685B0E0034E447 /* Helpers */,
-				E71233401A66E3680034E447 /* Cells */,
 				E71233101A66E07A0034E447 /* Main.storyboard */,
 				E71233131A66E07A0034E447 /* Images.xcassets */,
 				E71233151A66E07A0034E447 /* LaunchScreen.xib */,
@@ -238,6 +229,47 @@
 				E712338F1A683E460034E447 /* BBUserSortMaker.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		E712339F1A6870BA0034E447 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E71233A01A6870D10034E447 /* User Table */,
+				E71233A11A6870E30034E447 /* User Details */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E71233A01A6870D10034E447 /* User Table */ = {
+			isa = PBXGroup;
+			children = (
+				E71233A21A6870F00034E447 /* Notes Preview */,
+				E71233401A66E3680034E447 /* Cells */,
+				E712332F1A66E0FF0034E447 /* BBUsersTableViewController.h */,
+				E71233301A66E0FF0034E447 /* BBUsersTableViewController.m */,
+			);
+			name = "User Table";
+			sourceTree = "<group>";
+		};
+		E71233A11A6870E30034E447 /* User Details */ = {
+			isa = PBXGroup;
+			children = (
+				E71233891A678BD30034E447 /* BBUserDetailsController.h */,
+				E712338A1A678BD30034E447 /* BBUserDetailsController.m */,
+				E712338C1A678BF20034E447 /* BBUserDetailsController.xib */,
+			);
+			name = "User Details";
+			sourceTree = "<group>";
+		};
+		E71233A21A6870F00034E447 /* Notes Preview */ = {
+			isa = PBXGroup;
+			children = (
+				E712339A1A685B9C0034E447 /* BBNotesPreviewViewController.h */,
+				E712339B1A685B9C0034E447 /* BBNotesPreviewViewController.m */,
+				E712339C1A685B9C0034E447 /* BBNotesPreviewViewController.xib */,
+				E71233981A685B310034E447 /* BBNotesPreview.xib */,
+			);
+			name = "Notes Preview";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
