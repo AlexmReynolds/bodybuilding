@@ -112,5 +112,7 @@
 }
 - (IBAction)savePressed:(id)sender {
     [self updateNotes];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Notes", @"notest title") message:NSLocalizedString(@"saved", @"saved") delegate:nil cancelButtonTitle:NSLocalizedString(@"Cancel", @"cancel Title") otherButtonTitles:nil];
+    [alert show];
 }
 @end

@@ -56,7 +56,7 @@
 - (CGFloat)heightForPreview
 {
     CGFloat verticalPadding = 20;
-    CGFloat buttonHeight = 30;
+    CGFloat buttonHeight = [self heightForString:@"Close"];
     CGFloat oneLineOfText = [self heightForString:@"notes"];
     CGFloat numberOfLinesToPreview = 5;
     return oneLineOfText * numberOfLinesToPreview + buttonHeight + verticalPadding;

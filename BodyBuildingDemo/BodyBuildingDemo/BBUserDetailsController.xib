@@ -26,46 +26,28 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yr-Uh-Dbe">
-                    <rect key="frame" x="8" y="333" width="584" height="223"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="220" id="mWA-Gg-csV"/>
-                    </constraints>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="mWA-Gg-csV"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="8FU-4H-lXu"/>
-                    </connections>
-                </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6p-Y2-37E">
-                    <rect key="frame" x="300" y="562" width="292" height="30"/>
+                    <rect key="frame" x="300" y="560" width="292" height="32"/>
                     <color key="backgroundColor" red="0.29519776767475842" green="0.81680484693877553" blue="0.24611052436645173" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="X9c-hw-Uwg"/>
                     </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <state key="normal" title="Save">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="X9c-hw-Uwg"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="savePressed:" destination="-1" eventType="touchUpInside" id="RaY-0y-dt0"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwG-y7-jls">
-                    <rect key="frame" x="8" y="310" width="50.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.26461140519999998" green="0.53379372049999996" blue="0.85983338649999996" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fU7-0c-imj" userLabel="Avatar">
-                    <rect key="frame" x="8" y="49" width="233.5" height="233.5"/>
+                    <rect key="frame" x="8" y="50" width="233.5" height="233.5"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="9rh-Sw-OSf"/>
                         <constraint firstAttribute="width" secondItem="fU7-0c-imj" secondAttribute="height" multiplier="1:1" id="t96-BA-FJc"/>
@@ -90,79 +72,109 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJk-um-etd">
-                    <rect key="frame" x="249" y="49" width="70.5" height="19.5"/>
+                    <rect key="frame" x="249" y="50" width="70.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" red="0.26461140519999998" green="0.53379372049999996" blue="0.85983338649999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Age:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taL-LY-KfR">
-                    <rect key="frame" x="249" y="70" width="70.5" height="19.5"/>
+                    <rect key="frame" x="249" y="71" width="70.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" red="0.26461140519999998" green="0.53379372049999996" blue="0.85983338649999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Height:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myJ-N9-Nxd">
-                    <rect key="frame" x="249" y="90" width="70.5" height="19.5"/>
+                    <rect key="frame" x="249" y="91" width="70.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" red="0.26461140519999998" green="0.53379372049999996" blue="0.85983338649999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Weight:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xuy-Pz-niE">
-                    <rect key="frame" x="249" y="113" width="70.5" height="19.5"/>
+                    <rect key="frame" x="249" y="114" width="70.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" red="0.26461140519999998" green="0.53379372049999996" blue="0.85983338649999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Body Fat:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vya-gS-Fzn">
-                    <rect key="frame" x="249" y="136" width="70.5" height="19.5"/>
+                    <rect key="frame" x="249" y="137" width="70.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" red="0.26461140519999998" green="0.53379372049999996" blue="0.85983338649999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;age>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhu-k0-qa4">
-                    <rect key="frame" x="327" y="70" width="46.5" height="19.5"/>
+                    <rect key="frame" x="327" y="71" width="46.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;height>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dex-Yr-LhY">
-                    <rect key="frame" x="327" y="90" width="64.5" height="19.5"/>
+                    <rect key="frame" x="327" y="91" width="64.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;weight>lbs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkD-tl-7H4">
-                    <rect key="frame" x="327" y="113" width="89" height="19.5"/>
+                    <rect key="frame" x="327" y="114" width="89" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;bodyfat>%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkd-1d-tu6">
-                    <rect key="frame" x="327" y="136" width="91" height="19.5"/>
+                    <rect key="frame" x="327" y="137" width="91" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;realName>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqM-bK-AFn">
-                    <rect key="frame" x="327" y="49" width="88.5" height="19.5"/>
+                    <rect key="frame" x="327" y="50" width="88.5" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXs-WA-dwD">
-                    <rect key="frame" x="8" y="562" width="292" height="30"/>
+                    <rect key="frame" x="8" y="560" width="292" height="32"/>
                     <color key="backgroundColor" red="0.37108160001340296" green="0.58374355165784997" blue="0.81680484693877553" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Hkh-F6-jJS"/>
                     </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <state key="normal" title="Clear">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Hkh-F6-jJS"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="clearPressed:" destination="-1" eventType="touchUpInside" id="jtN-3Z-NFA"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwG-y7-jls">
+                    <rect key="frame" x="8" y="311" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.26461140519999998" green="0.53379372049999996" blue="0.85983338649999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Yr-Uh-Dbe">
+                    <rect key="frame" x="8" y="334.5" width="584" height="219.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="220" id="mWA-Gg-csV"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="mWA-Gg-csV"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="8FU-4H-lXu"/>
+                    </connections>
+                </textView>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
@@ -170,7 +182,7 @@
                 <constraint firstItem="NwG-y7-jls" firstAttribute="top" secondItem="fU7-0c-imj" secondAttribute="bottom" constant="27" id="1hE-dX-9Dc"/>
                 <constraint firstAttribute="trailing" secondItem="ojJ-Ve-CRy" secondAttribute="trailing" constant="16" id="4A1-Lj-2Hb"/>
                 <constraint firstItem="taL-LY-KfR" firstAttribute="leading" secondItem="myJ-N9-Nxd" secondAttribute="leading" id="4sJ-6H-KJQ"/>
-                <constraint firstItem="fU7-0c-imj" firstAttribute="top" secondItem="ojJ-Ve-CRy" secondAttribute="top" constant="23.5" id="5gp-y9-s5e"/>
+                <constraint firstItem="fU7-0c-imj" firstAttribute="top" secondItem="ojJ-Ve-CRy" secondAttribute="top" constant="24" id="5gp-y9-s5e"/>
                 <constraint firstAttribute="bottom" secondItem="zXs-WA-dwD" secondAttribute="bottom" constant="8" id="7r9-ZF-QYf"/>
                 <constraint firstItem="Vya-gS-Fzn" firstAttribute="leading" secondItem="Xuy-Pz-niE" secondAttribute="leading" id="9tD-NT-psK"/>
                 <constraint firstItem="ojJ-Ve-CRy" firstAttribute="top" secondItem="qQ5-UV-LCK" secondAttribute="bottom" constant="-2" id="BmA-ad-MJV"/>
@@ -206,6 +218,7 @@
                 <constraint firstItem="vJk-um-etd" firstAttribute="centerY" secondItem="eqM-bK-AFn" secondAttribute="centerY" constant="0.25" id="lQf-49-e7I"/>
                 <constraint firstItem="myJ-N9-Nxd" firstAttribute="top" secondItem="taL-LY-KfR" secondAttribute="bottom" id="lid-xc-Adc"/>
                 <constraint firstItem="fU7-0c-imj" firstAttribute="width" secondItem="6Yr-Uh-Dbe" secondAttribute="width" multiplier="0.4" id="n12-FQ-Z9w"/>
+                <constraint firstItem="fU7-0c-imj" firstAttribute="top" secondItem="ojJ-Ve-CRy" secondAttribute="bottom" constant="4.5" id="nNu-zt-QVn"/>
                 <constraint firstItem="HkD-tl-7H4" firstAttribute="leading" secondItem="Xuy-Pz-niE" secondAttribute="trailing" constant="7.5" id="qS8-j7-B4O"/>
                 <constraint firstItem="Ux1-We-oT2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="rJ7-Ig-wZ8"/>
                 <constraint firstItem="Xuy-Pz-niE" firstAttribute="centerY" secondItem="HkD-tl-7H4" secondAttribute="centerY" id="rZk-dp-kr1"/>
@@ -223,6 +236,7 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="5gp-y9-s5e"/>
                     <exclude reference="v1I-ec-VTj"/>
                     <exclude reference="1hE-dX-9Dc"/>
                     <exclude reference="LnN-o3-L4W"/>
