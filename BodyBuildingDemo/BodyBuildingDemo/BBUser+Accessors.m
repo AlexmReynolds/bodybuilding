@@ -9,6 +9,11 @@
 #import "BBUser+Accessors.h"
 
 @implementation BBUser (Accessors)
+
+- (void)awakeFromInsert
+{
+    self.age = nil;
+}
 + (instancetype)createOrUpdatedWithDictionary:(NSDictionary*)dataDictionary inContext:(NSManagedObjectContext*)context
 {
     BBUser *user;
@@ -21,9 +26,9 @@
 
     user.userName = dataDictionary[@"userName"];
     user.realName = dataDictionary[@"realName"];
-    user.city = dataDictionary[@"city"];
-    user.state = dataDictionary[@"state"];
-    user.country = dataDictionary[@"country"];
+    user.city = dataDictionary[@"city"] ?: @"";
+    user.state = dataDictionary[@"state"] ?: @"";
+    user.country = dataDictionary[@"country"] ?: @"";
     user.profilePicUrl = dataDictionary[@"profilePicUrl"];
     
     user.height = dataDictionary[@"height"];
@@ -79,18 +84,27 @@
     return string;
 }
 
-- (NSInteger)age
+- (NSString*)weightStringInStardardUnits
 {
-    NSInteger years = NSNotFound;
-    if(self.birthday){
-         years = [[[NSCalendar currentCalendar] components: NSCalendarUnitYear
-                                                           fromDate: self.birthday
-                                                             toDate: [NSDate date]
-                                                            options: 0]
-                           year];
+    NSString *string = @"";
+    if(self.weight){
+        NSString *unitsOfMeasure = NSLocalizedString(@"lbs", @"pounds abrv");
+        string = [NSString stringWithFormat:@"%@%@",self.weight, unitsOfMeasure];
     }
-    return years;
+    return string;
 }
 
-
+- (void) setBirthday:(NSDate *)birthday {
+    [self willChangeValueForKey:@"birthday"];
+    [self setPrimitiveValue:birthday forKey:@"birthday"];
+    if(self.birthday){
+        NSInteger year = [[[NSCalendar currentCalendar] components: NSCalendarUnitYear
+                                                          fromDate: self.birthday
+                                                            toDate: [NSDate date]
+                                                           options: 0] year];
+        self.age = @(year);
+    }
+    
+    [self didChangeValueForKey:@"birthday"];
+}
 @end

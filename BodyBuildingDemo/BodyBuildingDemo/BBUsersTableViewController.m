@@ -7,23 +7,27 @@
 //
 
 #import "BBUsersTableViewController.h"
-#import "BBUserFetchedResultsController.h"
 
 #import "BBUserTableViewCell.h"
 #import "BBReloadTableViewCell.h"
 
 #import "BBUserDetailsController.h"
+#import "BBNotesPreviewViewController.h"
 
 #import "BBUser+Accessors.h"
+#import "BBUserSortMaker.h"
 
 static NSString *kUserCellIdentifier = @"kUserCellIdentifier";
 static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 
-@interface BBUsersTableViewController ()<NSFetchedResultsControllerDelegate>
+@interface BBUsersTableViewController ()<NSFetchedResultsControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate, BBUserTableViewCellDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic) NSUInteger lastRequestedPage;
 @property (nonatomic) NSMutableDictionary *imagesForUsers;
+
+@property (nonatomic) BBUserSortOption currentSortOrder;
+@property (nonatomic, strong) BBNotesPreviewViewController *notesPreviewController;
 @end
 
 @implementation BBUsersTableViewController
@@ -31,19 +35,15 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    self.currentSortOrder = BBUserSortOptionDefault;
     self.imagesForUsers = [[NSMutableDictionary alloc] init];
     self.lastRequestedPage = 0;
 
     self.title = NSLocalizedString(@"Users", @"users table title");
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"BBUserTableViewCell" bundle:nil] forCellReuseIdentifier:kUserCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"BBReloadTableViewCell" bundle:nil] forCellReuseIdentifier:kReloadCellIdentifier];
+    [self registerCellNibs];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self addSortButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,43 +61,34 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 }
-- (void)loadDataForPage:(NSUInteger)page
-{
-    if([self hasMorePages]){
-        [BBApi getUsersForPage:page completion:^(NSDictionary *data, NSError *error) {
-            NSLog(@"data %@", data);
-            if(data){
-                for(NSDictionary *userData in data){
-                    [BBUser createOrUpdatedWithDictionary:userData inContext:self.managedObjectContext];
-                }
-                NSError *saveError = nil;
-                [self.managedObjectContext save:&saveError];
-                if(saveError != nil){
-                    NSLog(@"save Error %@", saveError);
-                }
-                if(data.count == 10){
-                    [self dataLoaded];
-                }else {
-                    //NO MORE RESULTS
-                    [self noMorePages];
-                }
-                
-            } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"error modal title") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"error modal cancel button") otherButtonTitles:nil];
-                [alert show];
-            }
-        }];
-    }
 
+- (void)registerCellNibs
+{
+    [self.tableView registerNib:[UINib nibWithNibName:@"BBUserTableViewCell" bundle:nil] forCellReuseIdentifier:kUserCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BBReloadTableViewCell" bundle:nil] forCellReuseIdentifier:kReloadCellIdentifier];
 }
+
+- (void)addSortButton
+{
+    UIBarButtonItem *sortButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Sort", @"sort button title") style:UIBarButtonItemStylePlain target:self action:@selector(showSortOptions)];
+    
+    self.navigationItem.rightBarButtonItem = sortButton;
+}
+
 - (void)dataLoaded
 {
     self.lastRequestedPage += 1;
+    //Check if the reload cell is still on screen after fetch, this occurs when results are not enough to fill screen.
+    BBReloadTableViewCell *lastCell = [[self.tableView visibleCells] lastObject];
+    if([lastCell isKindOfClass:[BBReloadTableViewCell class]]){
+        [self loadDataForPage:self.lastRequestedPage + 1];
+    }
 }
 
 - (void)noMorePages
 {
     self.lastRequestedPage = NSNotFound;
+
     BBReloadTableViewCell *lastCell = [[self.tableView visibleCells] lastObject];
     if([lastCell isKindOfClass:[BBReloadTableViewCell class]]){
         [lastCell stopLoading];
@@ -125,6 +116,22 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 }
 
 
+#pragma mark - Getters
+
+- (NSFetchRequest*)fetchRequestForSortOrder:(BBUserSortOption)sortOption
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sort = [BBUserSortMaker sortDescriptorForOption:sortOption];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    [fetchRequest setFetchBatchSize:20];
+    return fetchRequest;
+}
+
 - (NSManagedObjectContext *)managedObjectContext
 {
     if(_managedObjectContext == nil){
@@ -137,16 +144,7 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if(_fetchedResultsController == nil){
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription
-                                       entityForName:@"User" inManagedObjectContext:self.managedObjectContext];
-        [fetchRequest setEntity:entity];
-        
-        NSSortDescriptor *sort = [[NSSortDescriptor alloc]
-                                  initWithKey:@"id" ascending:YES];
-        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-        
-        [fetchRequest setFetchBatchSize:20];
+        NSFetchRequest *fetchRequest = [self fetchRequestForSortOrder:self.currentSortOrder];
         
         NSFetchedResultsController *theFetchedResultsController =
         [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
@@ -175,7 +173,9 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
     
     if([self indexPathIsLastRowInTable:tableView indexPath:indexPath]){
         BBReloadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kReloadCellIdentifier forIndexPath:indexPath];
-        
+        if(![self hasMorePages]){
+            [cell stopLoading];
+        }
         return cell;
     }else {
         BBUserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUserCellIdentifier forIndexPath:indexPath];
@@ -190,10 +190,10 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self indexPathIsLastRowInTable:tableView indexPath:indexPath]){
+    if([self indexPathIsLastRowInTable:tableView indexPath:indexPath] && [self hasMorePages]){
         [(BBReloadTableViewCell*)cell startLoading];
         
-        [self loadDataForPage:self.lastRequestedPage++];
+        [self loadDataForPage:self.lastRequestedPage + 1];
     }
 }
 
@@ -228,6 +228,8 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
 {
     BBUser *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.user = user;
+    cell.indexPath = indexPath;
+    cell.delegate = self;
     // Configure the cell..
     
     if (self.imagesForUsers[indexPath]) {
@@ -249,9 +251,103 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
     }
 }
 
+
+- (void)loadDataForPage:(NSUInteger)page
+{
+    if([self hasMorePages]){
+        
+        [BBApi getUsersForPage:page sortOrder:[BBUserSortMaker sortDescriptorForOption:self.currentSortOrder] completion:^(NSDictionary *data, NSError *error) {
+            NSLog(@"data %@", data);
+            if(data){
+                for(NSDictionary *userData in data){
+                    [BBUser createOrUpdatedWithDictionary:userData inContext:self.managedObjectContext];
+                }
+                NSError *saveError = nil;
+                [self.managedObjectContext save:&saveError];
+                if(saveError != nil){
+                    NSLog(@"save Error %@", saveError);
+                }
+                if(data.count == 10){
+                    [self dataLoaded];
+                }else {
+                    //NO MORE RESULTS
+                    [self noMorePages];
+                }
+                
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"error modal title") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"error modal cancel button") otherButtonTitles:nil];
+                [alert show];
+            }
+        }];
+    }
+    
+}
+
 - (BOOL)indexPathIsLastRowInTable:(UITableView *)tableView indexPath:(NSIndexPath*)indexPath
 {
     return indexPath.row == [[[self.fetchedResultsController sections] objectAtIndex:indexPath.section] numberOfObjects];
+}
+
+- (void)purgeLocalUserData
+{
+    NSFetchRequest * allCars = [[NSFetchRequest alloc] init];
+    [allCars setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedObjectContext]];
+    [allCars setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError * error = nil;
+    NSArray * cars = [self.managedObjectContext executeFetchRequest:allCars error:&error];
+    //error handling goes here
+    for (NSManagedObject * car in cars) {
+        [self.managedObjectContext deleteObject:car];
+    }
+    NSError *saveError = nil;
+    [self.managedObjectContext save:&saveError];
+}
+
+# pragma mark - Sorting
+
+- (void)showSortOptions
+{
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        UIAlertView *options = [BBUserSortMaker alertViewOfOptions];
+        options.delegate = self;
+        [options show];
+    }else{
+        UIActionSheet *actionSheet = [BBUserSortMaker actionSheetOfOptions];
+        actionSheet.delegate = self;
+        [actionSheet showInView:self.view];
+    }
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex != actionSheet.cancelButtonIndex){
+        [self updateSortForIndex:buttonIndex];
+
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex != alertView.cancelButtonIndex){
+        [self updateSortForIndex:buttonIndex];
+    }
+}
+
+- (void)updateSortForIndex:(NSInteger)index
+{
+    self.currentSortOrder = index;
+    self.fetchedResultsController = nil;
+    [self fetchResults];
+    [self.tableView reloadData];
+    
+    if([self hasMorePages]){
+        // REset data Not sure really best way to do this
+        self.lastRequestedPage = 0;
+        [self purgeLocalUserData];
+    }else {
+        
+    }
 }
 
 #pragma mark - Fetch Results Delegate
@@ -309,4 +405,15 @@ static NSString *kReloadCellIdentifier = @"kReloadCellIdentifier";
     [self.tableView endUpdates];
 }
 
+#pragma mark - BBUserTableViewCellDelegate
+
+- (void)notesButtonPressedAtIndexPath:(NSIndexPath *)indexPath
+{
+    BBUser *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    self.notesPreviewController = [[BBNotesPreviewViewController alloc] init];
+    self.notesPreviewController.notes = user.notes;
+    self.notesPreviewController.view.frame = self.tableView.window.bounds;
+    
+    [self.tableView.window addSubview:self.notesPreviewController.view];
+}
 @end

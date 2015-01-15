@@ -10,6 +10,6 @@
 typedef void(^completionBlock)(NSDictionary*data, NSError*error);
 
 @interface BBApi : NSObject
-+ (void)getUsersForPage:(NSInteger)page completion:(completionBlock)completion;
++ (void)getUsersForPage:(NSInteger)page sortOrder:(NSSortDescriptor*)sortOrder completion:(completionBlock)completion;
 
 @end

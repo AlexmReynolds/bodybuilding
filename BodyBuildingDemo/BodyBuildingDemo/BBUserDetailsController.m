@@ -39,14 +39,7 @@
             // cache the image for use later (when scrolling up)
         }
     }];
-    NSString *weightUnits = NSLocalizedString(@"lbs", @"pounds abrv");
-    self.realNameField.text = self.user.realName;
-    self.ageField.text = [NSString stringWithFormat:@"%li",(long)self.user.age];
-    self.heightField.text = [self.user heightStringInStardardUnits];
-    self.weightField.text = [NSString stringWithFormat:@"%@%@", self.user.weight, weightUnits];
-    self.bodyFatField.text = [NSString stringWithFormat:@"%li%%", [self.user.bodyfat integerValue]];
-    self.notesView.text = self.user.notes;
-    
+    [self loadUIWithUSer:self.user];
     self.notesView.inputView = [self makeToolbarForKeyboard];
 }
 
@@ -60,6 +53,21 @@
     [super viewWillDisappear:animated];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)loadUIWithUSer:(BBUser*)user
+{
+    self.realNameField.text = user.realName;
+    self.usernameLabel.text = user.userName;
+    self.ageField.text = [NSString stringWithFormat:@"%li",(long)[user.age integerValue]];
+    self.heightField.text = [user heightStringInStardardUnits];
+    self.weightField.text = [user weightStringInStardardUnits];
+    self.bodyFatField.text = [NSString stringWithFormat:@"%li%%", [user.bodyfat integerValue]];
+    
+    self.cityLabel.text = user.city;
+    self.stateCountryLabel.text = [NSString stringWithFormat:@"%@,%@", user.state, user.country];
+    
+    self.notesView.text = user.notes;
 }
 
 - (void)setUser:(BBUser *)user

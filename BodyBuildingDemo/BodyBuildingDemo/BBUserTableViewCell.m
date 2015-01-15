@@ -48,8 +48,8 @@
     self.userNameLabel.text = user.userName;
     
     NSString *ageString = @"";
-    if(user.age != NSNotFound){
-        ageString = [NSString stringWithFormat:@"%li", (long)[user age]];
+    if(user.age != nil){
+        ageString = [NSString stringWithFormat:@"%li", (long)[user.age integerValue]];
     }
     self.ageLabel.text = ageString;
     
@@ -73,13 +73,16 @@
 {
     if([keyPath isEqualToString:@"notes"])
     {
-        NSString *notes = [change objectForKey:NSKeyValueChangeNewKey];
-        self.noteButton.hidden = !notes.length;
+        id notes = [change objectForKey:NSKeyValueChangeNewKey];
+        self.noteButton.hidden = (notes != [NSNull null] && ![notes length]);
     }
 }
 
 
 - (IBAction)notePressed:(id)sender {
+    if([self.delegate respondsToSelector:@selector(notesButtonPressedAtIndexPath:)]){
+        [self.delegate notesButtonPressedAtIndexPath:self.indexPath];
+    }
 }
 
 + (CGFloat)cellHeightInTableView:(UITableView *)tableView forUser:(BBUser*)user

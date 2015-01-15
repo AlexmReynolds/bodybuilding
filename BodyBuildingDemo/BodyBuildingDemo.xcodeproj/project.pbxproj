@@ -15,18 +15,21 @@
 		E71233141A66E07A0034E447 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E71233131A66E07A0034E447 /* Images.xcassets */; };
 		E71233171A66E07A0034E447 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71233151A66E07A0034E447 /* LaunchScreen.xib */; };
 		E71233231A66E07A0034E447 /* BodyBuildingDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233221A66E07A0034E447 /* BodyBuildingDemoTests.m */; };
-		E712332E1A66E0EF0034E447 /* BBUserFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E712332D1A66E0EF0034E447 /* BBUserFetchedResultsController.m */; };
 		E71233311A66E0FF0034E447 /* BBUsersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233301A66E0FF0034E447 /* BBUsersTableViewController.m */; };
 		E71233351A66E2A20034E447 /* BBUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233331A66E2A20034E447 /* BBUserTableViewCell.m */; };
 		E71233361A66E2A20034E447 /* BBUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71233341A66E2A20034E447 /* BBUserTableViewCell.xib */; };
 		E712333A1A66E2AD0034E447 /* BBReloadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233381A66E2AD0034E447 /* BBReloadTableViewCell.m */; };
 		E712333B1A66E2AD0034E447 /* BBReloadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71233391A66E2AD0034E447 /* BBReloadTableViewCell.xib */; };
-		E712337E1A66F60F0034E447 /* BBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E712337D1A66F60F0034E447 /* BBUser.m */; };
 		E71233811A66F6290034E447 /* BBUser+Accessors.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233801A66F6290034E447 /* BBUser+Accessors.m */; };
 		E71233851A672A9E0034E447 /* BBApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233841A672A9E0034E447 /* BBApi.m */; };
 		E71233881A67356C0034E447 /* UIImageView+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233871A67356C0034E447 /* UIImageView+Helpers.m */; };
 		E712338B1A678BD30034E447 /* BBUserDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E712338A1A678BD30034E447 /* BBUserDetailsController.m */; };
 		E712338D1A678BF20034E447 /* BBUserDetailsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E712338C1A678BF20034E447 /* BBUserDetailsController.xib */; };
+		E71233901A683E460034E447 /* BBUserSortMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = E712338F1A683E460034E447 /* BBUserSortMaker.m */; };
+		E71233961A684B8C0034E447 /* BBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233951A684B8C0034E447 /* BBUser.m */; };
+		E71233991A685B310034E447 /* BBNotesPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71233981A685B310034E447 /* BBNotesPreview.xib */; };
+		E712339D1A685B9C0034E447 /* BBNotesPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E712339B1A685B9C0034E447 /* BBNotesPreviewViewController.m */; };
+		E712339E1A685B9C0034E447 /* BBNotesPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E712339C1A685B9C0034E447 /* BBNotesPreviewViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +58,6 @@
 		E712331C1A66E07A0034E447 /* BodyBuildingDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BodyBuildingDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71233211A66E07A0034E447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E71233221A66E07A0034E447 /* BodyBuildingDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyBuildingDemoTests.m; sourceTree = "<group>"; };
-		E712332C1A66E0EF0034E447 /* BBUserFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUserFetchedResultsController.h; sourceTree = "<group>"; };
-		E712332D1A66E0EF0034E447 /* BBUserFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUserFetchedResultsController.m; sourceTree = "<group>"; };
 		E712332F1A66E0FF0034E447 /* BBUsersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUsersTableViewController.h; sourceTree = "<group>"; };
 		E71233301A66E0FF0034E447 /* BBUsersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUsersTableViewController.m; sourceTree = "<group>"; };
 		E71233321A66E2A20034E447 /* BBUserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUserTableViewCell.h; sourceTree = "<group>"; };
@@ -66,8 +67,6 @@
 		E71233381A66E2AD0034E447 /* BBReloadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBReloadTableViewCell.m; sourceTree = "<group>"; };
 		E71233391A66E2AD0034E447 /* BBReloadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBReloadTableViewCell.xib; sourceTree = "<group>"; };
 		E71233441A66E5490034E447 /* BodyBuilding.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyBuilding.pch; sourceTree = "<group>"; };
-		E712337C1A66F60F0034E447 /* BBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUser.h; sourceTree = "<group>"; };
-		E712337D1A66F60F0034E447 /* BBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUser.m; sourceTree = "<group>"; };
 		E712337F1A66F6290034E447 /* BBUser+Accessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBUser+Accessors.h"; sourceTree = "<group>"; };
 		E71233801A66F6290034E447 /* BBUser+Accessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BBUser+Accessors.m"; sourceTree = "<group>"; };
 		E71233831A672A9E0034E447 /* BBApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBApi.h; sourceTree = "<group>"; };
@@ -77,6 +76,14 @@
 		E71233891A678BD30034E447 /* BBUserDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUserDetailsController.h; sourceTree = "<group>"; };
 		E712338A1A678BD30034E447 /* BBUserDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUserDetailsController.m; sourceTree = "<group>"; };
 		E712338C1A678BF20034E447 /* BBUserDetailsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBUserDetailsController.xib; sourceTree = "<group>"; };
+		E712338E1A683E460034E447 /* BBUserSortMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUserSortMaker.h; sourceTree = "<group>"; };
+		E712338F1A683E460034E447 /* BBUserSortMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUserSortMaker.m; sourceTree = "<group>"; };
+		E71233941A684B8C0034E447 /* BBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUser.h; sourceTree = "<group>"; };
+		E71233951A684B8C0034E447 /* BBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUser.m; sourceTree = "<group>"; };
+		E71233981A685B310034E447 /* BBNotesPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBNotesPreview.xib; sourceTree = "<group>"; };
+		E712339A1A685B9C0034E447 /* BBNotesPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBNotesPreviewViewController.h; sourceTree = "<group>"; };
+		E712339B1A685B9C0034E447 /* BBNotesPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBNotesPreviewViewController.m; sourceTree = "<group>"; };
+		E712339C1A685B9C0034E447 /* BBNotesPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBNotesPreviewViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,15 +147,16 @@
 			children = (
 				E71233071A66E07A0034E447 /* AppDelegate.h */,
 				E71233081A66E07A0034E447 /* AppDelegate.m */,
-				E71233861A67356C0034E447 /* UIImageView+Helpers.h */,
-				E71233871A67356C0034E447 /* UIImageView+Helpers.m */,
 				E712332F1A66E0FF0034E447 /* BBUsersTableViewController.h */,
 				E71233301A66E0FF0034E447 /* BBUsersTableViewController.m */,
-				E712332C1A66E0EF0034E447 /* BBUserFetchedResultsController.h */,
-				E712332D1A66E0EF0034E447 /* BBUserFetchedResultsController.m */,
 				E71233891A678BD30034E447 /* BBUserDetailsController.h */,
 				E712338A1A678BD30034E447 /* BBUserDetailsController.m */,
 				E712338C1A678BF20034E447 /* BBUserDetailsController.xib */,
+				E712339A1A685B9C0034E447 /* BBNotesPreviewViewController.h */,
+				E712339B1A685B9C0034E447 /* BBNotesPreviewViewController.m */,
+				E712339C1A685B9C0034E447 /* BBNotesPreviewViewController.xib */,
+				E71233981A685B310034E447 /* BBNotesPreview.xib */,
+				E71233971A685B0E0034E447 /* Helpers */,
 				E71233401A66E3680034E447 /* Cells */,
 				E71233101A66E07A0034E447 /* Main.storyboard */,
 				E71233131A66E07A0034E447 /* Images.xcassets */,
@@ -191,10 +199,10 @@
 		E712333F1A66E35A0034E447 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E712337C1A66F60F0034E447 /* BBUser.h */,
-				E712337D1A66F60F0034E447 /* BBUser.m */,
 				E712337F1A66F6290034E447 /* BBUser+Accessors.h */,
 				E71233801A66F6290034E447 /* BBUser+Accessors.m */,
+				E71233941A684B8C0034E447 /* BBUser.h */,
+				E71233951A684B8C0034E447 /* BBUser.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -219,6 +227,17 @@
 				E71233841A672A9E0034E447 /* BBApi.m */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		E71233971A685B0E0034E447 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E71233861A67356C0034E447 /* UIImageView+Helpers.h */,
+				E71233871A67356C0034E447 /* UIImageView+Helpers.m */,
+				E712338E1A683E460034E447 /* BBUserSortMaker.h */,
+				E712338F1A683E460034E447 /* BBUserSortMaker.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +328,8 @@
 				E71233171A66E07A0034E447 /* LaunchScreen.xib in Resources */,
 				E71233361A66E2A20034E447 /* BBUserTableViewCell.xib in Resources */,
 				E71233141A66E07A0034E447 /* Images.xcassets in Resources */,
+				E712339E1A685B9C0034E447 /* BBNotesPreviewViewController.xib in Resources */,
+				E71233991A685B310034E447 /* BBNotesPreview.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,16 +381,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71233311A66E0FF0034E447 /* BBUsersTableViewController.m in Sources */,
+				E712339D1A685B9C0034E447 /* BBNotesPreviewViewController.m in Sources */,
 				E712338B1A678BD30034E447 /* BBUserDetailsController.m in Sources */,
 				E712330C1A66E07A0034E447 /* BodyBuildingDemo.xcdatamodeld in Sources */,
+				E71233901A683E460034E447 /* BBUserSortMaker.m in Sources */,
 				E71233851A672A9E0034E447 /* BBApi.m in Sources */,
 				E71233091A66E07A0034E447 /* AppDelegate.m in Sources */,
-				E712332E1A66E0EF0034E447 /* BBUserFetchedResultsController.m in Sources */,
 				E71233351A66E2A20034E447 /* BBUserTableViewCell.m in Sources */,
 				E71233881A67356C0034E447 /* UIImageView+Helpers.m in Sources */,
 				E712333A1A66E2AD0034E447 /* BBReloadTableViewCell.m in Sources */,
-				E712337E1A66F60F0034E447 /* BBUser.m in Sources */,
 				E71233061A66E07A0034E447 /* main.m in Sources */,
+				E71233961A684B8C0034E447 /* BBUser.m in Sources */,
 				E71233811A66F6290034E447 /* BBUser+Accessors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

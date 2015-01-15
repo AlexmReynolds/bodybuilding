@@ -8,6 +8,8 @@
 
 #import "BBApi.h"
 #import "AFHTTPSessionManager.h"
+
+static NSUInteger kPerPageNumber = 10;
 @implementation BBApi
 + (AFHTTPSessionManager*)sharedAFNetworking {
     
@@ -24,13 +26,16 @@
     });
     return sharedClient;
 }
-+ (void)getUsersForPage:(NSInteger)page completion:(completionBlock)completion
+
++ (void)getUsersForPage:(NSInteger)page sortOrder:(NSSortDescriptor*)sortOrder completion:(completionBlock)completion
 {
-    NSInteger perPage = 10;
     AFHTTPSessionManager *manager = [self sharedAFNetworking];
     
-    NSDictionary *params = @{@"limit" : @(perPage),
-                             @"skip" : @(perPage * (page - 1))};
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:@{@"limit" : @(kPerPageNumber),@"skip" : @(kPerPageNumber * (page - 1))}];
+    
+    if(sortOrder){
+        [params setObject:[NSString stringWithFormat:@"%@ %@", sortOrder.key, sortOrder.ascending ? @"ASC" : @"DESC"] forKey:@"sort"];
+    }
     
     [manager GET:@"member" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         if(completion){
