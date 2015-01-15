@@ -32,6 +32,7 @@
 		E712339D1A685B9C0034E447 /* BBNotesPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E712339B1A685B9C0034E447 /* BBNotesPreviewViewController.m */; };
 		E712339E1A685B9C0034E447 /* BBNotesPreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E712339C1A685B9C0034E447 /* BBNotesPreviewViewController.xib */; };
 		E71233A41A6871370034E447 /* BBUserSortMaker_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233A31A6871370034E447 /* BBUserSortMaker_Tests.m */; };
+		E71233AA1A6879250034E447 /* BBUserFetchDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233A91A6879250034E447 /* BBUserFetchDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		E712339B1A685B9C0034E447 /* BBNotesPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBNotesPreviewViewController.m; sourceTree = "<group>"; };
 		E712339C1A685B9C0034E447 /* BBNotesPreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBNotesPreviewViewController.xib; sourceTree = "<group>"; };
 		E71233A31A6871370034E447 /* BBUserSortMaker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUserSortMaker_Tests.m; sourceTree = "<group>"; };
+		E71233A81A6879250034E447 /* BBUserFetchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUserFetchDelegate.h; sourceTree = "<group>"; };
+		E71233A91A6879250034E447 /* BBUserFetchDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUserFetchDelegate.m; sourceTree = "<group>"; };
 		F00EA6837373D3206BC799AE /* Pods-BodyBuildingDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BodyBuildingDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BodyBuildingDemoTests/Pods-BodyBuildingDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,6 +261,8 @@
 				E71233401A66E3680034E447 /* Cells */,
 				E712332F1A66E0FF0034E447 /* BBUsersTableViewController.h */,
 				E71233301A66E0FF0034E447 /* BBUsersTableViewController.m */,
+				E71233A81A6879250034E447 /* BBUserFetchDelegate.h */,
+				E71233A91A6879250034E447 /* BBUserFetchDelegate.m */,
 			);
 			name = "User Table";
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 				E71233311A66E0FF0034E447 /* BBUsersTableViewController.m in Sources */,
 				E712339D1A685B9C0034E447 /* BBNotesPreviewViewController.m in Sources */,
 				E712338B1A678BD30034E447 /* BBUserDetailsController.m in Sources */,
+				E71233AA1A6879250034E447 /* BBUserFetchDelegate.m in Sources */,
 				E712330C1A66E07A0034E447 /* BodyBuildingDemo.xcdatamodeld in Sources */,
 				E71233901A683E460034E447 /* BBUserSortMaker.m in Sources */,
 				E71233851A672A9E0034E447 /* BBApi.m in Sources */,
