@@ -14,6 +14,4 @@
 
 - (void)startLoading;
 - (void)stopLoading;
-- (void)noMoreResults;
-
 @end

@@ -8,6 +8,7 @@ pod 'AFNetworking'
 end
 
 target 'BodyBuildingDemoTests' do
-
+    pod 'AFNetworking'
+    pod 'OCMock', '~> 2'
 end
 

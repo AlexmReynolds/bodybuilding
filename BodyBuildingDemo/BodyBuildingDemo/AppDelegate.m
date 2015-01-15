@@ -17,9 +17,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+#if TESTING
+
+    UINavigationController *nav = (UINavigationController*)self.window.rootViewController;
+    UIViewController *initalController = [[UIViewController alloc] init];
+    nav.viewControllers = @[initalController];
+#else
     UINavigationController *nav = (UINavigationController*)[[[UIApplication sharedApplication] keyWindow] rootViewController];
     BBUsersTableViewController *initalController = (BBUsersTableViewController*)[nav topViewController];
     initalController.managedObjectContext = self.managedObjectContext;
+#endif
+
     return YES;
 }
 

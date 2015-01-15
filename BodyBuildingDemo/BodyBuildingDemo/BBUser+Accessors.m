@@ -77,8 +77,8 @@
     NSString *string = @"";
     if(self.height){
         NSInteger inchesPerFoot = 12;
-        NSInteger inches = self.height.integerValue % inchesPerFoot;
-        NSInteger feet = (self.height.integerValue - inches) / inchesPerFoot;
+        long inches = self.height.integerValue % inchesPerFoot;
+        long feet = (self.height.integerValue - inches) / inchesPerFoot;
         string = [NSString stringWithFormat:@"%li\'%li\"",feet,inches];
     }
     return string;

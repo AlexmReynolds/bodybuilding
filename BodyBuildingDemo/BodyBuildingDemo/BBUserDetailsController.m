@@ -62,7 +62,7 @@
     self.ageField.text = [NSString stringWithFormat:@"%li",(long)[user.age integerValue]];
     self.heightField.text = [user heightStringInStardardUnits];
     self.weightField.text = [user weightStringInStardardUnits];
-    self.bodyFatField.text = [NSString stringWithFormat:@"%li%%", [user.bodyfat integerValue]];
+    self.bodyFatField.text = [NSString stringWithFormat:@"%li%%", (long)[user.bodyfat integerValue]];
     
     self.cityLabel.text = user.city;
     self.stateCountryLabel.text = [NSString stringWithFormat:@"%@,%@", user.state, user.country];
