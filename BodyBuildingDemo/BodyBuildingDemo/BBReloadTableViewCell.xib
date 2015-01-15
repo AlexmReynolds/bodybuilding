@@ -12,7 +12,29 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2n-8Z-qTa">
+                        <rect key="frame" x="146" y="11" width="56.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rBV-Sk-50f">
+                        <rect key="frame" x="118" y="11" width="20" height="20"/>
+                    </activityIndicatorView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="V2n-8Z-qTa" secondAttribute="centerY" id="Ed9-A5-8Zr"/>
+                    <constraint firstItem="V2n-8Z-qTa" firstAttribute="centerY" secondItem="rBV-Sk-50f" secondAttribute="centerY" constant="-0.25" id="dUN-IE-jl2"/>
+                    <constraint firstItem="V2n-8Z-qTa" firstAttribute="leading" secondItem="rBV-Sk-50f" secondAttribute="trailing" constant="8" id="iL4-KM-u0x"/>
+                    <constraint firstAttribute="centerX" secondItem="V2n-8Z-qTa" secondAttribute="centerX" constant="-14" id="q7s-En-9Li"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="messageCenter" destination="q7s-En-9Li" id="yJO-1W-ds7"/>
+                <outlet property="messageLabel" destination="V2n-8Z-qTa" id="skL-t1-HdT"/>
+                <outlet property="spinner" destination="rBV-Sk-50f" id="Vgb-JB-3Hr"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

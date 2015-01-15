@@ -23,6 +23,10 @@
 		E712333B1A66E2AD0034E447 /* BBReloadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E71233391A66E2AD0034E447 /* BBReloadTableViewCell.xib */; };
 		E712337E1A66F60F0034E447 /* BBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E712337D1A66F60F0034E447 /* BBUser.m */; };
 		E71233811A66F6290034E447 /* BBUser+Accessors.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233801A66F6290034E447 /* BBUser+Accessors.m */; };
+		E71233851A672A9E0034E447 /* BBApi.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233841A672A9E0034E447 /* BBApi.m */; };
+		E71233881A67356C0034E447 /* UIImageView+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233871A67356C0034E447 /* UIImageView+Helpers.m */; };
+		E712338B1A678BD30034E447 /* BBUserDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E712338A1A678BD30034E447 /* BBUserDetailsController.m */; };
+		E712338D1A678BF20034E447 /* BBUserDetailsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E712338C1A678BF20034E447 /* BBUserDetailsController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,13 @@
 		E712337D1A66F60F0034E447 /* BBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUser.m; sourceTree = "<group>"; };
 		E712337F1A66F6290034E447 /* BBUser+Accessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BBUser+Accessors.h"; sourceTree = "<group>"; };
 		E71233801A66F6290034E447 /* BBUser+Accessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BBUser+Accessors.m"; sourceTree = "<group>"; };
+		E71233831A672A9E0034E447 /* BBApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBApi.h; sourceTree = "<group>"; };
+		E71233841A672A9E0034E447 /* BBApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBApi.m; sourceTree = "<group>"; };
+		E71233861A67356C0034E447 /* UIImageView+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Helpers.h"; sourceTree = "<group>"; };
+		E71233871A67356C0034E447 /* UIImageView+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Helpers.m"; sourceTree = "<group>"; };
+		E71233891A678BD30034E447 /* BBUserDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBUserDetailsController.h; sourceTree = "<group>"; };
+		E712338A1A678BD30034E447 /* BBUserDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBUserDetailsController.m; sourceTree = "<group>"; };
+		E712338C1A678BF20034E447 /* BBUserDetailsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BBUserDetailsController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,15 +140,21 @@
 			children = (
 				E71233071A66E07A0034E447 /* AppDelegate.h */,
 				E71233081A66E07A0034E447 /* AppDelegate.m */,
+				E71233861A67356C0034E447 /* UIImageView+Helpers.h */,
+				E71233871A67356C0034E447 /* UIImageView+Helpers.m */,
 				E712332F1A66E0FF0034E447 /* BBUsersTableViewController.h */,
 				E71233301A66E0FF0034E447 /* BBUsersTableViewController.m */,
 				E712332C1A66E0EF0034E447 /* BBUserFetchedResultsController.h */,
 				E712332D1A66E0EF0034E447 /* BBUserFetchedResultsController.m */,
+				E71233891A678BD30034E447 /* BBUserDetailsController.h */,
+				E712338A1A678BD30034E447 /* BBUserDetailsController.m */,
+				E712338C1A678BF20034E447 /* BBUserDetailsController.xib */,
 				E71233401A66E3680034E447 /* Cells */,
 				E71233101A66E07A0034E447 /* Main.storyboard */,
 				E71233131A66E07A0034E447 /* Images.xcassets */,
 				E71233151A66E07A0034E447 /* LaunchScreen.xib */,
 				E712330A1A66E07A0034E447 /* BodyBuildingDemo.xcdatamodeld */,
+				E71233821A672A810034E447 /* API */,
 				E712333F1A66E35A0034E447 /* Models */,
 				E71233031A66E07A0034E447 /* Supporting Files */,
 			);
@@ -193,6 +210,15 @@
 				E71233391A66E2AD0034E447 /* BBReloadTableViewCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		E71233821A672A810034E447 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E71233831A672A9E0034E447 /* BBApi.h */,
+				E71233841A672A9E0034E447 /* BBApi.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E712333B1A66E2AD0034E447 /* BBReloadTableViewCell.xib in Resources */,
+				E712338D1A678BF20034E447 /* BBUserDetailsController.xib in Resources */,
 				E71233121A66E07A0034E447 /* Main.storyboard in Resources */,
 				E71233171A66E07A0034E447 /* LaunchScreen.xib in Resources */,
 				E71233361A66E2A20034E447 /* BBUserTableViewCell.xib in Resources */,
@@ -333,10 +360,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71233311A66E0FF0034E447 /* BBUsersTableViewController.m in Sources */,
+				E712338B1A678BD30034E447 /* BBUserDetailsController.m in Sources */,
 				E712330C1A66E07A0034E447 /* BodyBuildingDemo.xcdatamodeld in Sources */,
+				E71233851A672A9E0034E447 /* BBApi.m in Sources */,
 				E71233091A66E07A0034E447 /* AppDelegate.m in Sources */,
 				E712332E1A66E0EF0034E447 /* BBUserFetchedResultsController.m in Sources */,
 				E71233351A66E2A20034E447 /* BBUserTableViewCell.m in Sources */,
+				E71233881A67356C0034E447 /* UIImageView+Helpers.m in Sources */,
 				E712333A1A66E2AD0034E447 /* BBReloadTableViewCell.m in Sources */,
 				E712337E1A66F60F0034E447 /* BBUser.m in Sources */,
 				E71233061A66E07A0034E447 /* main.m in Sources */,

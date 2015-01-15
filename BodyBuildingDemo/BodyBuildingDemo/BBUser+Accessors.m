@@ -17,24 +17,38 @@
         user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
     }
     user.userId = userID;
+    user.id = dataDictionary[@"id"];
+
     user.userName = dataDictionary[@"userName"];
     user.realName = dataDictionary[@"realName"];
     user.city = dataDictionary[@"city"];
     user.state = dataDictionary[@"state"];
     user.country = dataDictionary[@"country"];
+    user.profilePicUrl = dataDictionary[@"profilePicUrl"];
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [df setDateFormat:@"yyyy-MM-dd"];
-    user.birthday = [df dateFromString: dataDictionary[@"birthday"]];
-
+    user.height = dataDictionary[@"height"];
+    user.weight = dataDictionary[@"weight"];
+    user.bodyfat = dataDictionary[@"bodyfat"];
     
-    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    user.createdAt = [df dateFromString: dataDictionary[@"createdAt"]];
-    user.updatedAt = [df dateFromString: dataDictionary[@"updatedAt"]];
-
+    [user parseDates:dataDictionary];
     
     return user;
+}
+
+- (void)parseDates:(NSDictionary*)dataDictionary
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    if(dataDictionary[@"birthday"] != [NSNull null]){
+        [df setDateFormat:@"yyyy-MM-dd"];
+        self.birthday = [df dateFromString: dataDictionary[@"birthday"]];
+    }
+    
+    if(dataDictionary[@"createdAt"] != [NSNull null]){
+        [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+        self.createdAt = [df dateFromString: dataDictionary[@"createdAt"]];
+        self.updatedAt = [df dateFromString: dataDictionary[@"updatedAt"]];
+    }
 }
 
 + (instancetype)loadUserById:(NSNumber*)userId inContext:(NSManagedObjectContext *)context {
@@ -53,13 +67,28 @@
     return nil;
 }
 
+- (NSString*)heightStringInStardardUnits
+{
+    NSString *string = @"";
+    if(self.height){
+        NSInteger inchesPerFoot = 12;
+        NSInteger inches = self.height.integerValue % inchesPerFoot;
+        NSInteger feet = (self.height.integerValue - inches) / inchesPerFoot;
+        string = [NSString stringWithFormat:@"%li\'%li\"",feet,inches];
+    }
+    return string;
+}
+
 - (NSInteger)age
 {
-    NSInteger years = [[[NSCalendar currentCalendar] components: NSCalendarUnitYear
-                                                       fromDate: self.birthday
-                                                         toDate: [NSDate date]
-                                                        options: 0]
-                       year];
+    NSInteger years = NSNotFound;
+    if(self.birthday){
+         years = [[[NSCalendar currentCalendar] components: NSCalendarUnitYear
+                                                           fromDate: self.birthday
+                                                             toDate: [NSDate date]
+                                                            options: 0]
+                           year];
+    }
     return years;
 }
 

@@ -10,7 +10,6 @@
 #import "BBUser+Accessors.h"
 
 @interface BBUserTableViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *stateCountryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
@@ -25,6 +24,11 @@
     // Initialization code
 }
 
+- (void)dealloc
+{
+    [self removeNotesObserver];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -33,12 +37,48 @@
 
 - (void)setUser:(BBUser *)user
 {
+    if(_user){
+        [self removeNotesObserver];
+    }
     _user = user;
+
+    [_user addObserver:self forKeyPath:@"notes" options:NSKeyValueObservingOptionNew context:nil];
+
+    
     self.userNameLabel.text = user.userName;
-    self.ageLabel.text = [NSString stringWithFormat:@"%li", (long)[user age]];
+    
+    NSString *ageString = @"";
+    if(user.age != NSNotFound){
+        ageString = [NSString stringWithFormat:@"%li", (long)[user age]];
+    }
+    self.ageLabel.text = ageString;
+    
     self.cityLabel.text = user.city;
     self.stateCountryLabel.text = [NSString stringWithFormat:@"%@,%@", user.state, user.country];
+    self.noteButton.hidden = self.user.notes.length == 0;
 }
+
+#pragma mark - Key Value Observing
+
+- (void)removeNotesObserver
+{
+    @try{
+        [_user removeObserver:self forKeyPath:@"notes"];
+    }@catch(id anException){
+        //do nothing, obviously it wasn't attached because an exception was thrown
+    }
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"notes"])
+    {
+        NSString *notes = [change objectForKey:NSKeyValueChangeNewKey];
+        self.noteButton.hidden = !notes.length;
+    }
+}
+
+
 - (IBAction)notePressed:(id)sender {
 }
 

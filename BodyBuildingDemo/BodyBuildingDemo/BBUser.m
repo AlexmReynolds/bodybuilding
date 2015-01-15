@@ -11,14 +11,18 @@
 
 @implementation BBUser
 
+@dynamic notes;
 @dynamic userName;
 @dynamic realName;
 @dynamic state;
 @dynamic city;
 @dynamic country;
 @dynamic userId;
+@dynamic id;
 @dynamic birthday;
 @dynamic height;
+@dynamic weight;
+@dynamic bodyfat;
 @dynamic profilePicUrl;
 @dynamic createdAt;
 @dynamic updatedAt;

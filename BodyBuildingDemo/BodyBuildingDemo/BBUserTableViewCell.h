@@ -10,5 +10,7 @@
 @class BBUser;
 @interface BBUserTableViewCell : UITableViewCell
 @property (nonatomic, strong) BBUser *user;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+
 + (CGFloat)cellHeightInTableView:(UITableView *)tableView forUser:(BBUser*)user;
 @end
